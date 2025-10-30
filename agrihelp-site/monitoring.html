@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="section-page">
+  <div class="section-header monitor-header">
+    <h2>📷 Plant Monitoring System</h2>
+  </div>
+
+  <div class="section-content">
+    <p>
+      Detect plant diseases using your device camera. AI models will analyze the captured images to assess crop health and identify early signs of issues.
+    </p>
+
+    <div class="camera-box">
+      <video id="webcam" autoplay playsinline muted></video>
+      <button id="startCam">Start Camera</button>
+    </div>
+
+    <p class="note">
+      (In the future, we’ll integrate AI detection for leaf color analysis and pest detection.)
+    </p>
+  </div>
+
+  <script>
+    const btn = document.getElementById('startCam');
+    if (btn) {
+      btn.addEventListener('click', async () => {
+        const video = document.getElementById('webcam');
+        try {
+          const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+          video.srcObject = stream;
+        } catch {
+          alert('Please allow camera access.');
+        }
+      });
+    }
+  </script>
+</body>
+</html>
